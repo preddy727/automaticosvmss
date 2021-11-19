@@ -11,6 +11,7 @@ az account set --subscription $subscription_id
 
 az group create --name myResourceGroup --location eastus
 
+## Create a Virtual Machine
 az vm create \
   --resource-group myResourceGroup \
   --name myVM \
