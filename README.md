@@ -160,9 +160,11 @@ az vmss update --name myScaleSet --resource-group myResourceGroup --set UpgradeP
 az vmss update --name <vmss-name> --resource-group <resource-group-name> --set virtualMachineProfile.storageProfile.imageReference.id="<id of the new image>"
 ```
 
-## Update an existing scaleset with persistent data disks 
+## Create a scaleset with persistent data disks 
 ```powershell 
-az vmss update \
+
+## Use the shared image gallery image from the automatic os section above 
+az vmss create \
   --resource-group myResourceGroup \
   --name myScaleSet \
   --upgrade-policy-mode automatic \
