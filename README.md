@@ -158,7 +158,37 @@ az vmss update --name myScaleSet --resource-group myResourceGroup --set UpgradeP
 
 ```powershell
 az vmss update --name <vmss-name> --resource-group <resource-group-name> --set virtualMachineProfile.storageProfile.imageReference.id="<id of the new image>"
-  ```
+```
+
+## Update an existing scaleset with persistent data disks 
+```powershell 
+az vmss update \
+  --resource-group myResourceGroup \
+  --name myScaleSet \
+  --upgrade-policy-mode automatic \
+  --admin-username azureuser \
+  --generate-ssh-keys \
+  --data-disk-sizes-gb 64 128
+  --image "/subscriptions/c2483929-bdde-40b3-992e-66dd68f52928/resourceGroups/myGalleryRG/providers/Microsoft.Compute/galleries/myGallery/images/myImageDefinition" \
+  --specialized
+
+# Attach an additional 128Gb data disk
+az vmss disk attach \
+  --resource-group myResourceGroup \
+  --name myScaleSet \
+  --size-gb 128
+
+# Install the Azure Custom Script Extension to run a script that prepares the data disks
+az vmss extension set \
+  --publisher Microsoft.Azure.Extensions \
+  --version 2.0 \
+  --name CustomScript \
+  --resource-group myResourceGroup \
+  --vmss-name myScaleSet \
+  --settings '{"fileUris":["https://raw.githubusercontent.com/Azure-Samples/compute-automation-configurations/master/prepare_vm_disks.sh"],"commandToExecute":"./prepare_vm_disks.sh"}'
+
+
+ ```
 
 
 
