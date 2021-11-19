@@ -156,5 +156,9 @@ az vmss update --name myScaleSet --resource-group myResourceGroup --set UpgradeP
 
 ## Rolling upgrades 
 
+```powershell
+az vmss update --name <vmss-name> --resource-group <resource-group-name> --set virtualMachineProfile.storageProfile.imageReference.id="<id of the new image>"
+  ```
+
 
 
