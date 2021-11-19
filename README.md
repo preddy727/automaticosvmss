@@ -1,5 +1,32 @@
 # Azure Virtual Machine Scale set upgrade options 
 ## Manual 
+```powershell 
+
+1.	Login to https://resources.azure.com/
+
+2.	Select the subscription -> resourceGroups -> providers -> Microsoft Compute -> virtualMachineScaleSets
+
+https://resources.azure.com/subscriptions/<subid>/resourceGroups/31230-eastus2-nprd-devops-rg/providers/Microsoft.Compute/virtualMachineScaleSets/31230-eastus2-devops-AgentPool-vmss
+3.	Control F - Search for ‘image reference’ and remove the references as shown below and click on “PUT” you will get the tick mark.
+4.	Open VMSS 
+5.	Click on Instances on left blade and select one instance -> click on ‘Upgrade’ wait until it is completed.
+6.	Click on same instance which you are selected and click on ‘Reimage’
+7.	Once completed you will see latest model as “Yes” as shown below.
+8.	How to verify you have latest ones. Go to Home-> Subscriptions-> <sub id> -> Resources -> search for ‘shared images’  -> Click on ‘Ubuntu 20.04’ 
+Scroll down and Sort by ‘Published date’ 
+
+9.	Now open VMSS and Instance -> get inside of any instance and click on JSON view
+Notice that version exactly matches what we have in golden image.
+
+10.	Go to VMSS -> Operating System 
+11.	 Scroll down on the right blade and Check box the ‘Modify custom data’ and then click on ‘Save’
+12.	Select both the VMSS and click on ‘Reimage’ 
+13.	Verify agents should come online after few minutes
+
+
+
+
+  ```
 
 
 
