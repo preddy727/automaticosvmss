@@ -188,7 +188,11 @@ az vmss extension set \
   --resource-group myResourceGroup \
   --vmss-name myScaleSet2 \
   --settings '{"fileUris":["https://raw.githubusercontent.com/Azure-Samples/compute-automation-configurations/master/prepare_vm_disks.sh"],"commandToExecute":"./prepare_vm_disks.sh"}'
+  
+  
+## Using Run command
 
+az vmss run-command invoke -g myResourceGroup -n myScaleSet2 --command-id RunShellScript \ --instance-id 0 --scripts "df -h"
 
  ```
 
