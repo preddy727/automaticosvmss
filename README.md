@@ -166,7 +166,7 @@ az vmss update --name <vmss-name> --resource-group <resource-group-name> --set v
 ## Use the shared image gallery image from the automatic os section above 
 az vmss create \
   --resource-group myResourceGroup \
-  --name myScaleSet \
+  --name myScaleSet2 \
   --upgrade-policy-mode automatic \
   --admin-username azureuser \
   --generate-ssh-keys \
@@ -186,7 +186,7 @@ az vmss extension set \
   --version 2.0 \
   --name CustomScript \
   --resource-group myResourceGroup \
-  --vmss-name myScaleSet \
+  --vmss-name myScaleSet2 \
   --settings '{"fileUris":["https://raw.githubusercontent.com/Azure-Samples/compute-automation-configurations/master/prepare_vm_disks.sh"],"commandToExecute":"./prepare_vm_disks.sh"}'
 
 
